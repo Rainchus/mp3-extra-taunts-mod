@@ -1,7 +1,5 @@
 #include "../include/mp3.h"
 
-#define globalTaunts 1
-
 s16 characterVoiceBase[] = {
 0x2AC, //despair 1 (c-right)
 0x287, //despair 2 (c-left)
@@ -56,10 +54,20 @@ void checkPlayerTaunt(s32 playerIndex) { //check if current player in loop shoul
 }
 
 void playerTauntsMain() {
-	if (inBoardPtr != NULL) { //if in board
-		for (s32 i = 0; i < 4; i++) { //iterate over 4 players
-			if (GetCurrentPlayerIndex() != i) { //if not current player
-				checkPlayerTaunt(i);
+	if (globalTaunt == 1) {
+		//global
+	} else {
+		if (inBoardPtr != NULL) { //if in board
+			if (canTauntDuringYourTurn == 1) {
+				for (s32 i = 0; i < 4; i++) { //iterate over 4 players
+					checkPlayerTaunt(i);
+				}	
+			} else {
+				for (s32 i = 0; i < 4; i++) { //iterate over 4 players
+					if (GetCurrentPlayerIndex() != i) { //if not current player
+						checkPlayerTaunt(i);
+					}
+				}
 			}
 		}
 	}

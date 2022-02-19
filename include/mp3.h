@@ -92,6 +92,9 @@ typedef struct playerMain {
 //P3 = 0x800D1178
 //P4 = 0x800D11B0
 
+//data
+extern s16 globalTaunt;
+extern s16 canTauntDuringYourTurn;
 extern s16 	Player1HeldButtons; 	//0x800CCF7C
 extern s16  PlayerPressedButtonsArray[4]; //0x800C9520
 extern s16	Player1Pressedbuttons;	//0x800C9520
