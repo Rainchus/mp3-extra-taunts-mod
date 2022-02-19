@@ -1,6 +1,8 @@
 #include "../include/mp3.h"
 
-s16 playSoundCharacterOffsets[] = {
+#define globalTaunts 1
+
+s16 characterVoiceBase[] = {
 0x2AC, //despair 1 (c-right)
 0x287, //despair 2 (c-left)
 0x2B5, //good choice (c-down)
@@ -34,20 +36,20 @@ void playPlayerSadVoice(s32 playerIndex) {
 void checkPlayerTaunt(s32 playerIndex) { //check if current player in loop should taunt
 	playerMain* player = GetPlayerStruct(playerIndex);
 	if (!(player->flags1 & 1)) { //if player is not cpu
-		s16 playSoundVoiceOffset = -1;
+		s16 currentVoiceOffset = -1;
 		//get ptr to player buttons
 		if ((PlayerPressedButtonsArray[player->controller_port_index] & 0xFFFFFFFF) != 0) { //player has pressed *something*, check what
 			for (s32 j = 0; j < sizeof(tauntButtonsArray) / sizeof(s16); j++) { //check what button was pressed
 				if (PlayerPressedButtonsArray[player->controller_port_index] == tauntButtonsArray[j]) {
-					playSoundVoiceOffset = j;
+					currentVoiceOffset = j;
 					break;
 				} else {
-					playSoundVoiceOffset = -1;
+					currentVoiceOffset = -1;
 				}
 			}
 
-			if (playSoundVoiceOffset != -1) {
-				PlaySound(playSoundCharacterOffsets[playSoundVoiceOffset] + player->characterID);
+			if (currentVoiceOffset != -1) {
+				PlaySound(characterVoiceBase[currentVoiceOffset] + player->characterID);
 			}
 		}
 	}
