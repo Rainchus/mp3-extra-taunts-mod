@@ -1,6 +1,12 @@
 # mp3-extra-taunts-mod
 MP3 more character taunts mod
 
+You can set the following options with gameshark codes:<br>
+800977D0 s16, if taunts are active globally bool<br>
+800977D2 s16, if you can taunt when it's your turn on the board<br>
+810977D0 00xx<br>
+810977D2 00xx<br><br>
+
 To apply mod to vanilla rom:<br>
 Download flips (IPS patcher) and apply the .bps patch provided to a vanilla US mp3.z64 rom<br><br>
 
